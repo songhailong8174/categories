@@ -1,8 +1,15 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<view>
+			<view class="">
+				<view>已选 {{ count }} 个</view>
+			</view>
+			<long-categories
+				:list="list"
+				:maxSelected="-1"
+				@change="change"
+			>
+			</long-categories>
 		</view>
 	</view>
 </template>
@@ -11,14 +18,36 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				list: [],
+				count: 0
 			}
 		},
 		onLoad() {
-
+			this.init()
 		},
 		methods: {
-
+			init () {
+				for (let i = 0; i < 10; i++) {
+					let item = {
+						id: `c-${ i }`,
+						name: `分类-${ i }`,
+						children: [],
+						selectedIds: {}
+					}
+					for (let j = 0; j < 10; j++) {
+						item.children.push({
+							id: `item-${ i }-${ j }`,
+							name: `元素${ j }`,
+							disabled: ( j > 2 && j < 5),
+							checked: false
+						})
+					}
+					this.list.push(item)
+				}
+			},
+			change (data) {
+				this.count = data.length
+			}
 		}
 	}
 </script>
