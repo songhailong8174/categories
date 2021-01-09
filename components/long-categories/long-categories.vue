@@ -119,12 +119,15 @@
 				}
 				this.getSelectedCount()
 			},
-		getValues () {
+			getValues () {
 				let ids = []
 				this.list.forEach(item => {
 					ids = ids.concat(Object.values(item.selectedIds))
 				})
 				return ids
+			},
+			getActive () {
+				return { index: this.active, data: JSON.parse(JSON.stringify(this.list[this.active])) }
 			},
 			getSelectedCount () {
 				let ids = this.getValues()
@@ -141,6 +144,9 @@
 				setTimeout(()=>{
 					this.active = this.list.length - 1
 				}, 50)
+			},
+			reload () {
+				this.getNodesInfo()
 			}
 		},
 		mounted() {

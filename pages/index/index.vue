@@ -4,8 +4,10 @@
 			<view class="">
 				<view>最多选 {{ max }} 个</view>
 				<view>已选 {{ count }} 个</view>
+				<button @click="getCurrentItem">获取当前索引</button>
 			</view>
 			<long-categories
+				ref="long"
 				:list="list"
 				:maxSelected="max"
 				@change="change"
@@ -50,6 +52,9 @@
 			change (data) {
 				this.count = data.length
 				console.log(data)
+			},
+			getCurrentItem () {
+				console.log(this.$refs.long.getActive())
 			}
 		}
 	}
