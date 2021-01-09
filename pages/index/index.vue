@@ -2,11 +2,12 @@
 	<view class="content">
 		<view>
 			<view class="">
+				<view>最多选 {{ max }} 个</view>
 				<view>已选 {{ count }} 个</view>
 			</view>
 			<long-categories
 				:list="list"
-				:maxSelected="-1"
+				:maxSelected="max"
 				@change="change"
 			>
 			</long-categories>
@@ -19,7 +20,8 @@
 		data() {
 			return {
 				list: [],
-				count: 0
+				count: 0,
+				max: 10
 			}
 		},
 		onLoad() {
@@ -47,6 +49,7 @@
 			},
 			change (data) {
 				this.count = data.length
+				console.log(data)
 			}
 		}
 	}

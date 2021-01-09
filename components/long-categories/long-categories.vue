@@ -128,7 +128,7 @@
 			},
 			getSelectedCount () {
 				let ids = this.getValues()
-				this.$emit('change', ids)
+				this.$emit('change', JSON.parse(JSON.stringify(ids)))
 			},
 			getNodesInfo () {
 				const query = uni.createSelectorQuery().in(this);
